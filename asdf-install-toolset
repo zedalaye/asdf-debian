@@ -2,7 +2,7 @@
 set -e
 
 TOOL_NAME=$1
-TOOL_DIR=$HOME/.asdf/toolset/$TOOL_NAME
+TOOL_DIR=/app/.asdf/toolset/$TOOL_NAME
 
 # Install tool plugin
 asdf plugin-add $TOOL_NAME $(< $TOOL_DIR/plugin-repo)
