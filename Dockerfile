@@ -11,16 +11,9 @@ RUN set -eux; \
 	echo ASDF_DIR=${ASDF_DIR} ASDF_DATA_DIR=${ASDF_DATA_DIR}; \
 	apt-get update; \
 # Manually install these dependencies so they won't be removed
-	apt-get install -y --no-install-recommends \
-		bzip2 \
-		ca-certificates \
-		libffi-dev \
-		libgmp-dev \
-		libssl-dev \
-		libyaml-dev \
-		procps \
-		zlib1g-dev \
-	; \
+	bash ${ASDF_DIR}/toolset/ruby/runtime-deps; \
+    bash ${ASDF_DIR}/toolset/nodejs/runtime-deps; \
+    bash ${ASDF_DIR}/toolset/yarn/runtime-deps; \
 # Prepare for further cleanup
 	savedAptMark="$(apt-mark showmanual)"; \
 # Prepare for install
@@ -28,7 +21,7 @@ RUN set -eux; \
     bash ${ASDF_DIR}/toolset/nodejs/build-deps; \
     bash ${ASDF_DIR}/toolset/yarn/build-deps; \
 # Install packages
-    RUBY_CONFIGURE_OPTS="--disable-install-doc" asdf-install-toolset ruby; unset RUBY_CONFIGURE_OPTS; \
+    RUBY_CONFIGURE_OPTS="--disable-install-doc" asdf-install-toolset ruby; \
     asdf-install-toolset nodejs; \
     asdf-install-toolset yarn; \
 # Cleanup : keep only required dependencies

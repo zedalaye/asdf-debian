@@ -1,0 +1,12 @@
+#!/usr/bin/env bash
+set -e
+
+apt-get install -y --no-install-recommends \
+    bzip2 \
+    ca-certificates \
+    libffi-dev \
+    libgmp-dev \
+    libssl-dev \
+    libyaml-dev \
+    procps \
+    zlib1g-dev

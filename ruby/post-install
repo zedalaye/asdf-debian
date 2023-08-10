@@ -1,0 +1,14 @@
+#!/usr/bin/env bash
+
+set -eux
+
+TOOL_VERSION="$(<${ASDF_DIR}/toolset/ruby/version)"
+GEMRC_DIR="${ASDF_DIR}/installs/ruby/${TOOL_VERSION}/etc"
+mkdir -p ${GEMRC_DIR}
+{
+    echo 'install: --no-document';
+    echo 'update: --no-document';
+} >> ${GEMRC_DIR}/gemrc
+
+unset GEMRC_DIR
+
